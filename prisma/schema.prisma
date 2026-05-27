@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Project {
+  id             String    @id @default(uuid())
+  name           String
+  client         String?
+  location       String?
+  personInCharge String?   
+  contractNumber String?
+  targetHandover DateTime? 
+  cables         Cable[]
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+enum CableType {
+  INSTRUMENTATION
+  FIRE_AND_GAS
+  CONTROL
+  POWER
+}
+
+model Cable {
+  id                     String    @id @default(uuid())
+  projectId              String
+  project                Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  cableNumber            String
+  areaLocation           String?
+  cableType              CableType
+  specifications         String?
+  functions              String?
+  equipment              String?
+  junctionBox            String?
+  routeFrom              String?
+  routeTo                String?
+  horizontalLength       Float     @default(0) 
+  verticalLength         Float     @default(0)
+  horizontalAllowancePct Float     @default(10) 
+  verticalAllowancePct   Float     @default(10)
+  tolerancePct           Float     @default(3)
+  turnsAndOffsets        Float     @default(0)
+  terminationFlexibility Float     @default(0)
+  installedSubtotal      Float     @default(0)
+  measurementTolerance   Float     @default(0)
+  totalEstimate          Float     @default(0) 
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+
+  @@index([cableType])
+  @@index([areaLocation])
+}
