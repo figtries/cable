@@ -29,9 +29,11 @@ function Field({
   type?: string
   onChange: (value: string) => void
 }) {
+  const isEmptyDate = type === 'date' && !value
+
   return (
     <label className="block">
-      <span className="mb-[10px] block text-[12px] font-bold uppercase leading-none tracking-[0.09em] text-[#404751]">
+      <span className="mb-[10px] block text-[12px] font-bold leading-none tracking-[0.09em] text-[#404751]">
         {label}
       </span>
 
@@ -40,12 +42,13 @@ function Field({
         value={value}
         placeholder={placeholder}
         onChange={e => onChange(e.target.value)}
-        className="
+        className={`
           h-[48px] w-full rounded-[14px] border border-[#E1E4EA] bg-[#F7F7F8]
-          px-[18px] text-[14px] font-medium text-gray-900 outline-none
+          px-[18px] text-[14px] font-medium outline-none
           transition-all placeholder:text-[#9BA3AF]
           focus:border-[#C9CDD4] focus:bg-white
-        "
+          ${isEmptyDate ? 'text-[#9BA3AF]' : 'text-gray-900'}
+        `}
       />
     </label>
   )
@@ -68,8 +71,8 @@ export default function CreateProjectForm({ onCreated }: Props) {
   }
 
   return (
-    <div className="flex min-h-[430px] flex-col rounded-[28px] border border-[#ECEEF3] bg-white px-[36px] pb-[32px] pt-[36px] shadow-[0_10px_28px_rgba(15,23,42,0.06)]">
-      <p className="mb-[12px] text-[12px] font-bold uppercase leading-none tracking-[0.12em] text-[#A0A6B1]">
+    <div className="flex min-h-[320px] flex-col rounded-[20px] border border-[#ECEEF3] bg-white px-5 pb-6 pt-6 shadow-[0_10px_28px_rgba(15,23,42,0.06)] md:min-h-[430px] md:rounded-[28px] md:px-[36px] md:pb-[32px] md:pt-[36px]">
+      <p className="mb-[12px] text-[12px] font-bold leading-none tracking-[0.12em] text-[#A0A6B1]">
         Cable Validation System
       </p>
 
@@ -87,7 +90,7 @@ export default function CreateProjectForm({ onCreated }: Props) {
           />
         </div>
 
-        <div className="mb-[22px] grid grid-cols-3 gap-[16px]">
+        <div className="mb-[22px] grid grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-3">
           <Field
             label="Client"
             value={form.client}
@@ -110,7 +113,7 @@ export default function CreateProjectForm({ onCreated }: Props) {
           />
         </div>
 
-        <div className="mb-[24px] grid grid-cols-2 gap-[16px]">
+        <div className="mb-[24px] grid grid-cols-1 gap-[16px] sm:grid-cols-2">
           <Field
             label="Contract Number"
             value={form.contract}
@@ -130,9 +133,9 @@ export default function CreateProjectForm({ onCreated }: Props) {
           disabled={!form.name.trim()}
           onClick={handleSubmit}
           className="
-            mt-auto h-[48px] w-full rounded-[12px] bg-[#A5A9AE] text-[15px] font-bold text-white
-            transition-all duration-150 hover:bg-[#969BA1] active:scale-[0.99]
-            disabled:cursor-not-allowed disabled:opacity-70
+            mt-auto h-[48px] w-full rounded-[12px] bg-[#4B5563] text-[15px] font-bold text-white
+            transition-all duration-150 hover:bg-[#374151] active:scale-[0.99]
+            disabled:cursor-not-allowed disabled:bg-[#4B5563] disabled:opacity-100
           "
         >
           + Create &amp; start project

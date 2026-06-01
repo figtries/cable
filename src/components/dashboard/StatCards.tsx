@@ -42,7 +42,7 @@ export default function StatCards({ project }: { project: Project | null }) {
   ]
 
   return (
-    <div className="grid grid-cols-3 gap-4 mb-6">
+    <div className="grid grid-cols-1 gap-3 mb-5 sm:grid-cols-2 md:grid-cols-3 md:gap-4 md:mb-6">
       {cards.map((c, i) => (
         <div
           key={i}

@@ -37,7 +37,12 @@ export default function AddProjectModal({ open, onClose, onCreated }: AddProject
       subtitle="Cable Validation System"
       title="Create a new project"
     >
-      <div className="space-y-4 mt-4">
+      <div
+        className="
+          add-project-modal-form mt-4 space-y-4
+          [&_label]:normal-case [&_label_*]:normal-case
+        "
+      >
         <Input
           label="Project Name"
           value={form.name}
@@ -45,7 +50,7 @@ export default function AddProjectModal({ open, onClose, onCreated }: AddProject
           placeholder="Example: Balikpapan Oil Refinery Phase 1"
         />
 
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
           <Input
             label="Client"
             value={form.client}
@@ -66,30 +71,56 @@ export default function AddProjectModal({ open, onClose, onCreated }: AddProject
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <Input
             label="Contract Number"
             value={form.contract}
             onChange={e => set('contract', e.target.value)}
             placeholder="CTR-2024-XXXX"
           />
-          <Input
-            label="Target Handover"
-            type="date"
-            value={form.handover}
-            onChange={e => set('handover', e.target.value)}
-          />
+
+          <div className={!form.handover ? 'date-empty' : ''}>
+            <Input
+              label="Target Handover"
+              type="date"
+              value={form.handover}
+              onChange={e => set('handover', e.target.value)}
+            />
+          </div>
         </div>
 
         <Button
           variant="dark"
-          className="w-full justify-center mt-2"
+          className="
+            mt-2 w-full justify-center bg-[#4B5563]
+            hover:bg-[#374151]
+            disabled:bg-[#4B5563] disabled:opacity-100
+          "
           disabled={!form.name.trim()}
           onClick={handleSubmit}
         >
           + Create &amp; start project
         </Button>
       </div>
+
+      <style jsx global>{`
+        .add-project-modal-form label,
+        .add-project-modal-form label * {
+          text-transform: none !important;
+        }
+
+        .add-project-modal-form .date-empty input[type='date'] {
+          color: #9ba3af !important;
+        }
+
+        .add-project-modal-form .date-empty input[type='date']::-webkit-datetime-edit {
+          color: #9ba3af !important;
+        }
+
+        .add-project-modal-form input::placeholder {
+          color: #9ba3af !important;
+        }
+      `}</style>
     </Modal>
   )
 }

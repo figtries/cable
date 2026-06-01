@@ -15,9 +15,9 @@ export default function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="flex h-full w-[260px] shrink-0 flex-col bg-white">
+    <aside className="hidden h-full w-[260px] shrink-0 flex-col bg-white lg:flex">
       <nav className="flex-1 pb-4 pl-[42px] pr-[22px] pt-[34px]">
-        <p className="mb-7 text-[14px] font-bold uppercase leading-none tracking-[0.34em] text-[#8B919B]">
+        <p className="mb-7 text-[28px] font-bold leading-none tracking-[-0.03em] text-[#8B919B]">
           General
         </p>
 

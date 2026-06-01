@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { LayoutGrid, SlidersHorizontal } from 'lucide-react'
+import { LayoutGrid } from 'lucide-react'
 import useStore from '@/store/useStore'
 import ActiveProjectCard from './ActiveProjectCard'
 import CreateProjectForm from './CreateProjectForm'
@@ -29,19 +29,19 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <div className="animate-fade-up px-[34px] py-[34px]">
+      <div className="animate-fade-up px-4 py-5 md:px-[34px] md:py-[34px]">
         {/* Header */}
-        <div className="mb-[34px]">
-          <h1 className="mb-[8px] text-[28px] font-bold leading-none tracking-[-0.04em] text-[#171B24]">
+        <div className="mb-6 md:mb-[34px]">
+          <h1 className="mb-[8px] text-xl font-bold leading-none tracking-[-0.04em] text-[#171B24] md:text-[28px]">
             Project Management
           </h1>
-          <p className="text-[14px] font-medium text-[#9AA2AF]">
+          <p className="text-[13px] font-medium text-[#9AA2AF] md:text-[14px]">
             Select a project or create a new one to begin calculations.
           </p>
         </div>
 
         {/* Top Section */}
-        <div className="mb-[42px] grid w-full max-w-[1180px] grid-cols-[330px_minmax(0,1fr)] items-stretch gap-[28px]">
+        <div className="mb-8 grid w-full grid-cols-1 items-stretch gap-5 md:mb-[42px] md:gap-[28px] lg:grid-cols-[330px_minmax(0,1fr)]">
           {activeProject ? (
             <ActiveProjectCard project={activeProject} />
           ) : (
@@ -50,8 +50,12 @@ export default function ProjectsPage() {
                 <div className="mb-2 flex h-11 w-11 items-center justify-center rounded-xl bg-gray-50">
                   <LayoutGrid size={18} className="text-gray-400" />
                 </div>
-                <p className="text-[13px] font-semibold text-gray-500">No active project</p>
-                <p className="text-xs text-gray-400">Create a project to get started.</p>
+                <p className="text-[13px] font-semibold text-gray-500">
+                  No active project
+                </p>
+                <p className="text-xs text-gray-400">
+                  Select a project or create a new one to view project data.
+                </p>
               </div>
             </div>
           )}
@@ -61,29 +65,19 @@ export default function ProjectsPage() {
 
         {/* Saved projects */}
         {projects.length > 0 && (
-          <div className="w-full max-w-[1180px]">
-            <div className="mb-[18px] flex items-center justify-between">
+          <div className="w-full">
+            <div className="mb-[24px] flex items-center justify-between">
               <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#A0A6B1]">
                 Saved Projects
               </p>
-
-              <div className="flex items-center gap-[8px]">
-                <button className="flex h-[31px] w-[31px] items-center justify-center rounded-[10px] border border-gray-200 text-gray-400 transition-colors hover:bg-gray-50 active:scale-90">
-                  <SlidersHorizontal size={13} />
-                </button>
-
-                <button className="flex h-[31px] w-[31px] items-center justify-center rounded-[10px] border border-gray-200 text-gray-400 transition-colors hover:bg-gray-50 active:scale-90">
-                  <LayoutGrid size={13} />
-                </button>
-              </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-[18px] xl:grid-cols-3">
+            <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:gap-[22px] lg:grid-cols-3">
               {projects.map((p, i) => (
                 <div
                   key={p.id}
                   style={{ animationDelay: `${i * 50 + 250}ms` }}
-                  className="animate-fade-up"
+                  className="min-w-0 animate-fade-up"
                 >
                   <SavedProjectCard
                     project={p}
@@ -101,17 +95,30 @@ export default function ProjectsPage() {
         )}
       </div>
 
-      <Modal open={!!confirmId} onClose={() => setConfirmId(null)} title="Delete project?">
+      <Modal
+        open={!!confirmId}
+        onClose={() => setConfirmId(null)}
+        title="Delete project?"
+      >
         <p className="mb-5 text-[13px] text-gray-500">
-          &quot;{projects.find(p => p.id === confirmId)?.name}&quot; and all its cables will be permanently deleted.
+          &quot;{projects.find(p => p.id === confirmId)?.name}&quot; and all
+          its cables will be permanently deleted.
         </p>
 
         <div className="flex gap-2">
-          <Button variant="secondary" className="flex-1 justify-center" onClick={() => setConfirmId(null)}>
+          <Button
+            variant="secondary"
+            className="flex-1 justify-center"
+            onClick={() => setConfirmId(null)}
+          >
             Cancel
           </Button>
 
-          <Button variant="danger" className="flex-1 justify-center" onClick={() => confirmId && handleDelete(confirmId)}>
+          <Button
+            variant="danger"
+            className="flex-1 justify-center"
+            onClick={() => confirmId && handleDelete(confirmId)}
+          >
             Delete
           </Button>
         </div>

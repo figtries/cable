@@ -16,9 +16,9 @@ export default function ProjectTab() {
     <div className="relative z-20 -ml-[82px] animate-fade-in">
       <div
         className="
-          relative isolate flex h-[56px] w-[278px]
-          items-center rounded-t-[34px] bg-white
-          pl-[43px] pr-[45px]
+          relative isolate flex h-[58px] w-[338px]
+          items-center overflow-visible rounded-t-[34px] bg-white
+          pl-[48px] pr-[66px]
         "
       >
         {/* smooth white curve kiri bawah tab */}
@@ -42,10 +42,12 @@ export default function ProjectTab() {
         />
 
         <span
+          title={active.name}
           className="
-            relative z-10 max-w-[145px] truncate select-none
-            text-[22px] font-semibold leading-none
-            tracking-[-0.035em] text-[#001F41]
+            relative z-10 flex h-[34px] min-w-0 flex-1
+            items-center overflow-hidden text-ellipsis whitespace-nowrap
+            select-none text-[20px] font-semibold leading-[34px]
+            tracking-[-0.025em] text-[#001F41]
           "
         >
           {active.name}
@@ -56,13 +58,13 @@ export default function ProjectTab() {
           aria-label="Close project tab"
           onClick={() => setActiveId(null)}
           className="
-            relative z-10 ml-auto flex h-7 w-7 shrink-0
-            items-center justify-center rounded-full
+            absolute right-[30px] top-1/2 z-20 flex h-[32px] w-[32px]
+            -translate-y-1/2 items-center justify-center rounded-full
             text-[#1F2328] transition-all duration-150
-            hover:bg-black/[0.04] active:scale-90
+            hover:bg-[#EEF0F3] active:scale-90
           "
         >
-          <X size={20} strokeWidth={2.4} />
+          <X size={22} strokeWidth={2.2} />
         </button>
       </div>
     </div>

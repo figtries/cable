@@ -57,8 +57,7 @@ export function bestDrumSize(lengths: number[], splice: boolean): number | null 
 export interface RunParams {
   horizontal: number
   vertical: number
-  hAllowance: number
-  vAllowance: number
+  bends: number
   termPerEnd: number
   tolerance: number
 }
@@ -66,8 +65,8 @@ export interface RunParams {
 export interface RunResult {
   horizontal: number
   vertical: number
-  hAdd: number
-  vAdd: number
+  routed: number
+  bendsAdd: number
   termAdd: number
   installed: number
   tolAdd: number
@@ -75,11 +74,11 @@ export interface RunResult {
 }
 
 export function computeRun(p: RunParams): RunResult {
-  const hAdd = p.horizontal * (p.hAllowance / 100)
-  const vAdd = p.vertical * (p.vAllowance / 100)
+  const routed = p.horizontal + p.vertical
+  const bendsAdd = routed * (p.bends / 100)
   const termAdd = p.termPerEnd * 2
-  const installed = p.horizontal + p.vertical + hAdd + vAdd + termAdd
+  const installed = routed + bendsAdd + termAdd
   const tolAdd = installed * (p.tolerance / 100)
   const cut = Math.ceil(installed + tolAdd)
-  return { horizontal: p.horizontal, vertical: p.vertical, hAdd, vAdd, termAdd, installed, tolAdd, cut }
+  return { horizontal: p.horizontal, vertical: p.vertical, routed, bendsAdd, termAdd, installed, tolAdd, cut }
 }
