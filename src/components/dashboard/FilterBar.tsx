@@ -45,7 +45,7 @@ export default function FilterBar({
   const selCls = (active: boolean) =>
     cn(
       'h-[36px] rounded-[8px] border bg-white',
-      'px-0 py-0 text-center text-[13px] font-medium leading-[36px]',
+      'px-3 py-0 text-center text-[12px] font-medium leading-[36px]',
       'appearance-none cursor-pointer outline-none',
       '[text-align-last:center]',
       'transition-all duration-150',
@@ -57,7 +57,7 @@ export default function FilterBar({
   return (
     <div className="flex w-full flex-wrap items-center gap-[8px] overflow-x-auto">
       <select
-        className={cn(selCls(!!filters.cat), 'w-[92px] shrink-0')}
+        className={cn(selCls(!!filters.cat), 'min-w-[90px] shrink-0')}
         value={filters.cat}
         onChange={e => onFilterChange('cat', e.target.value)}
       >
@@ -70,7 +70,7 @@ export default function FilterBar({
       </select>
 
       <select
-        className={cn(selCls(!!filters.area), 'w-[84px] shrink-0')}
+        className={cn(selCls(!!filters.area), 'min-w-[84px] shrink-0')}
         value={filters.area}
         onChange={e => onFilterChange('area', e.target.value)}
       >
@@ -83,7 +83,7 @@ export default function FilterBar({
       </select>
 
       <select
-        className={cn(selCls(!!filters.equip), 'w-[76px] shrink-0')}
+        className={cn(selCls(!!filters.equip), 'min-w-[76px] shrink-0')}
         value={filters.equip}
         onChange={e => onFilterChange('equip', e.target.value)}
       >
@@ -96,7 +96,7 @@ export default function FilterBar({
       </select>
 
       <select
-        className={cn(selCls(!!filters.route), 'w-[92px] shrink-0 truncate')}
+        className={cn(selCls(!!filters.route), 'min-w-[120px] max-w-[200px] shrink-0')}
         value={filters.route}
         onChange={e => onFilterChange('route', e.target.value)}
       >

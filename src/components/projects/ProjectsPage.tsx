@@ -66,11 +66,9 @@ export default function ProjectsPage() {
         {/* Saved projects */}
         {projects.length > 0 && (
           <div className="w-full">
-            <div className="mb-[24px] flex items-center justify-between">
-              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#A0A6B1]">
-                Saved Projects
-              </p>
-            </div>
+            <p className="mb-[20px] text-[13px] font-semibold tracking-normal text-[#A0A6B1]">
+              Saved Projects
+            </p>
 
             <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:gap-[22px] lg:grid-cols-3">
               {projects.map((p, i) => (

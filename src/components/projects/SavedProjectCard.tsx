@@ -72,7 +72,7 @@ export default function SavedProjectCard({
         </p>
       </div>
 
-      <div className="absolute bottom-[20px] left-[20px] right-[20px] border-t border-gray-100 pt-[15px]">
+      <div className="absolute bottom-[20px] left-[20px] right-[20px]">
         <div>
           <p className="text-[22px] font-bold leading-none tracking-[-0.04em] text-gray-950 tabular-nums">
             {project.cables.length}
