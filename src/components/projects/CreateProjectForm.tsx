@@ -133,9 +133,9 @@ export default function CreateProjectForm({ onCreated }: Props) {
           disabled={!form.name.trim()}
           onClick={handleSubmit}
           className="
-            mt-auto h-[48px] w-full rounded-[12px] bg-[#4B5563] text-[15px] font-bold text-white
-            transition-all duration-150 hover:bg-[#374151] active:scale-[0.99]
-            disabled:cursor-not-allowed disabled:bg-[#4B5563] disabled:opacity-100
+            mt-auto h-[48px] w-full rounded-[12px] bg-[#3F4249] text-[15px] font-bold text-white
+            transition-all duration-150 hover:bg-[#34373D] active:scale-[0.99]
+            disabled:cursor-not-allowed disabled:bg-[#3F4249] disabled:opacity-100
           "
         >
           + Create &amp; start project

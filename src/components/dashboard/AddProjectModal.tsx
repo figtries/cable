@@ -92,9 +92,9 @@ export default function AddProjectModal({ open, onClose, onCreated }: AddProject
         <Button
           variant="dark"
           className="
-            mt-2 w-full justify-center bg-[#4B5563]
-            hover:bg-[#374151]
-            disabled:bg-[#4B5563] disabled:opacity-100
+            mt-2 w-full justify-center bg-[#3F4249]
+            hover:bg-[#34373D]
+            disabled:bg-[#3F4249] disabled:opacity-100
           "
           disabled={!form.name.trim()}
           onClick={handleSubmit}
